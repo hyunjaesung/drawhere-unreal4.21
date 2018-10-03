@@ -38,6 +38,10 @@ private:
 	//Component
 	UPROPERTY(VisibleAnywhere)
 		UMotionControllerComponent*MotionContorller;
+
+	//State
+
+	AStroke * CurrentStroke;
 	
 	
 };

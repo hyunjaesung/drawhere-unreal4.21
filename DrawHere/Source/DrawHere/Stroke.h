@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/SplineMeshComponent.h"
 #include "Stroke.generated.h"
 
 UCLASS()
@@ -15,14 +16,22 @@ public:
 	// Sets default values for this actor's properties
 	AStroke();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	void Update(FVector CursorLocation);
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+private:
+	USplineMeshComponent * CreateSplineMeshes();
+	
+	//Components
+	UPROPERTY(VisibleAnywhere)
+	USceneComponent * Root;
+	
+	//Config
+	UPROPERTY(EditDefaultsOnly)
+		UStaticMesh * SplineMeshes;
 
-	
-	
+	UPROPERTY(EditDefaultsOnly)
+		UMaterialInterface*SplineMaterial;
+
+	//state
+	FVector PreviousCursorLocation;
 };
