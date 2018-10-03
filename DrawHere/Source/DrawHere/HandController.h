@@ -5,6 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "MotionControllerComponent.h"
+#include"Stroke.h"
+
+
 #include "HandController.generated.h"
 
 UCLASS()
@@ -15,6 +18,8 @@ class DRAWHERE_API AHandController : public AActor
 public:	
 	
 	AHandController();
+	void TriggerPressed();
+	void TriggerReleased();
 
 protected:
 	
@@ -25,6 +30,11 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
+	//config
+	UPROPERTY(EditAnywhere)
+		TSubclassOf<AStroke> StrokeClass;
+
+
 	//Component
 	UPROPERTY(VisibleAnywhere)
 		UMotionControllerComponent*MotionContorller;
