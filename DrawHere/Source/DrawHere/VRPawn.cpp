@@ -29,8 +29,8 @@ void AVRPawn::BeginPlay()
 
 	}
 
-	
-
+	UPainterSaveGame*Painting = UPainterSaveGame::Create();
+	Painting->Save();
 }
 
 

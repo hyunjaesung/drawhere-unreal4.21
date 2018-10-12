@@ -6,6 +6,8 @@
 #include "GameFramework/Pawn.h"
 #include "HandController.h"
 #include "Camera/CameraComponent.h"
+#include "Saving/PainterSaveGame.h"
+
 
 #include "VRPawn.generated.h"
 
