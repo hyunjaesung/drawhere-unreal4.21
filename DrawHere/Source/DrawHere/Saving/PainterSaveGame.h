@@ -17,8 +17,20 @@ class DRAWHERE_API UPainterSaveGame : public USaveGame
 	GENERATED_BODY()
 
 
-public : // 퍼블릭필요
+public : // public needed
 	static UPainterSaveGame * Create();
 	bool Save();
-	
+	static UPainterSaveGame * Load();
+
+
+	//just set and get string
+	void SetState(FString NewState) { State = NewState; };
+	FString GetState() const { return State; }
+
+
+private:
+	//state
+	UPROPERTY()
+	FString State;
+
 };

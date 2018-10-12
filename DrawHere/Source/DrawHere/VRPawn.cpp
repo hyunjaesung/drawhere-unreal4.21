@@ -29,8 +29,7 @@ void AVRPawn::BeginPlay()
 
 	}
 
-	UPainterSaveGame*Painting = UPainterSaveGame::Create();
-	Painting->Save();
+	
 }
 
 
@@ -40,4 +39,22 @@ void AVRPawn::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
 	
 	PlayerInputComponent->BindAction(TEXT("RightTrigger"), EInputEvent::IE_Pressed, this, &AVRPawn::RightTriggerPressed);
 	PlayerInputComponent->BindAction(TEXT("RightTrigger"), EInputEvent::IE_Released, this, &AVRPawn::RightTriggerReleased);
+	PlayerInputComponent->BindAction(TEXT("Save"), EInputEvent::IE_Released, this, &AVRPawn::Save);
+	PlayerInputComponent->BindAction(TEXT("Load"), EInputEvent::IE_Released, this, &AVRPawn::Load);
+}
+
+void AVRPawn::Save()
+{
+	UPainterSaveGame*Painting = UPainterSaveGame::Create();
+
+	Painting->SetState("SaveWorld");
+	Painting->Save();
+}
+
+void AVRPawn::Load()
+{
+	UPainterSaveGame * Painting = UPainterSaveGame::Load();
+	UE_LOG(LogTemp, Warning, TEXT("Painting State %s"), *Painting->GetState());// * Warning
+
+
 }
