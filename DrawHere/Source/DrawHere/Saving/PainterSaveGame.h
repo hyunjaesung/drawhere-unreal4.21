@@ -27,10 +27,18 @@ public : // public needed
 	void SetState(FString NewState) { State = NewState; };
 	FString GetState() const { return State; }
 
+	void SerializeFromWorld(UWorld*World);
+
+	void DeserializeToWorld(UWorld* ChangedWorld);
 
 private:
+	void ClearWorld(UWorld * World);
+
 	//state
 	UPROPERTY()
 	FString State;
+	
+	UPROPERTY()
+	TArray<TSubclassOf<class AStroke>> Strokes; // save strokes for making different level
 
 };
