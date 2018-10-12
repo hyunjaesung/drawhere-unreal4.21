@@ -1,4 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PainterSaveGame.h"
 #include "Kismet/GameplayStatics.h"
@@ -12,12 +13,12 @@ UPainterSaveGame * UPainterSaveGame::Create()
 
 	return Cast<UPainterSaveGame>(NewSaveGame);
 
-	
+
 }
 
 bool UPainterSaveGame::Save()
 {
-	return UGameplayStatics::SaveGameToSlot(this, TEXT("Test"), 0 );
+	return UGameplayStatics::SaveGameToSlot(this, TEXT("Test"), 0);
 
 }
 
@@ -29,13 +30,13 @@ UPainterSaveGame * UPainterSaveGame::Load()
 
 void UPainterSaveGame::SerializeFromWorld(UWorld * World)
 {
-	
+
 	Strokes.Empty();//clear array first
 
 	for (TActorIterator<AStroke> StrokeItr(World); StrokeItr; ++StrokeItr)//iterate over all strokes
 	{
 		//Todo:serialize
-		Strokes.Add(StrokeItr->GetClass());//Store class type
+		Strokes.Add(StrokeItr->SerializeToStruct());//Store class type
 	}
 
 }
@@ -44,10 +45,10 @@ void UPainterSaveGame::DeserializeToWorld(UWorld * ChangedWorld)
 {
 	//clear world first
 	ClearWorld(ChangedWorld);
-	
-	for (TSubclassOf<AStroke> StrokeClass : Strokes)
+
+	for (FStrokeState StrokeState : Strokes)
 	{
-		ChangedWorld->SpawnActor<AStroke>(StrokeClass);
+		AStroke::SpawnAndDeserializeFromStruct(ChangedWorld, StrokeState);
 	}
 
 	//For all strokes

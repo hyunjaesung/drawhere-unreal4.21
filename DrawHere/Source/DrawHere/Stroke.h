@@ -1,4 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -6,7 +7,7 @@
 #include "GameFramework/Actor.h"
 
 #include "Components/InstancedStaticMeshComponent.h"
-
+#include "Saving/PainterSaveGame.h"
 #include "Components/SplineMeshComponent.h"
 #include "Stroke.generated.h"
 
@@ -14,17 +15,22 @@ UCLASS()
 class DRAWHERE_API AStroke : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AStroke();
 
 	void Update(FVector CursorLocation);
 
+	FStrokeState SerializeToStruct() const;
+	static AStroke* SpawnAndDeserializeFromStruct(UWorld* World, const FStrokeState& StrokeState);
+
+
+
 private:
-	
+
 	FTransform GetNextSegmentTransform(FVector CurrentLocation) const;
-	
+
 	FTransform GetNextJointTransform(FVector CurrentLocation) const;
 
 
@@ -34,8 +40,8 @@ private:
 
 	//Components
 	UPROPERTY(VisibleAnywhere)
-	USceneComponent * Root;
-	
+		USceneComponent * Root;
+
 	//Config
 	UPROPERTY(VisibleAnywhere)
 		UInstancedStaticMeshComponent * StrokeMeshes;
@@ -45,4 +51,6 @@ private:
 
 	//state
 	FVector PreviousCursorLocation;
+	TArray<FVector> ControlPoints;
+
 };

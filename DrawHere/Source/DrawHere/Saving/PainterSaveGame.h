@@ -1,4 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
+// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -8,16 +9,28 @@
 
 #include "PainterSaveGame.generated.h"
 
+
+USTRUCT()
+struct FStrokeState
+{
+	GENERATED_BODY()
+		UPROPERTY()
+		TSubclassOf<class AStroke> Class;
+	UPROPERTY()
+		TArray<FVector> ControlPoints;
+};
+
+
 /**
- * 
- */
+*
+*/
 UCLASS()
 class DRAWHERE_API UPainterSaveGame : public USaveGame
 {
 	GENERATED_BODY()
 
 
-public : // public needed
+public: // public needed
 	static UPainterSaveGame * Create();
 	bool Save();
 	static UPainterSaveGame * Load();
@@ -36,9 +49,9 @@ private:
 
 	//state
 	UPROPERTY()
-	FString State;
-	
+		FString State;
+
 	UPROPERTY()
-	TArray<TSubclassOf<class AStroke>> Strokes; // save strokes for making different level
+		TArray<FStrokeState> Strokes; // save strokes for making different level
 
 };
