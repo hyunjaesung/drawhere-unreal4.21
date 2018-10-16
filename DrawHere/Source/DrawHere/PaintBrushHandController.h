@@ -4,22 +4,23 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "MotionControllerComponent.h"
+
 #include"Stroke.h"
+#include"HandControllerBase.h"
 
-
-#include "HandController.generated.h"
+#include "PaintBrushHandController.generated.h"
 
 UCLASS()
-class DRAWHERE_API AHandController : public AActor
+class DRAWHERE_API APaintBrushHandController : public AHandControllerBase
 {
 	GENERATED_BODY()
 	
 public:	
 	
-	AHandController();
-	void TriggerPressed();
-	void TriggerReleased();
+	APaintBrushHandController();
+	
+	void TriggerPressed() override;
+	void TriggerReleased() override;
 
 protected:
 	
@@ -35,10 +36,7 @@ private:
 		TSubclassOf<AStroke> StrokeClass;
 
 
-	//Component
-	UPROPERTY(VisibleAnywhere)
-		UMotionControllerComponent*MotionContorller;
-
+	
 	//State
 
 	AStroke * CurrentStroke;

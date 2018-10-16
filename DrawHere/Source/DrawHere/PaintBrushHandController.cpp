@@ -1,23 +1,19 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "HandController.h"
+#include "PaintBrushHandController.h"
 #include "Engine/World.h"
 
 // Sets default values
-AHandController::AHandController()
+APaintBrushHandController::APaintBrushHandController()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	MotionContorller = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("MotionController"));
-	SetRootComponent(MotionContorller);
-	MotionContorller->SetTrackingSource(EControllerHand::Right);
-	MotionContorller->SetShowDeviceModel(true);
-
+	
 
 }
 
 
-void AHandController::TriggerPressed()
+void APaintBrushHandController::TriggerPressed()
 {
 	CurrentStroke = GetWorld()->SpawnActor<AStroke>(StrokeClass);
 
@@ -25,20 +21,20 @@ void AHandController::TriggerPressed()
 
 }
 
-void AHandController::TriggerReleased()
+void APaintBrushHandController::TriggerReleased()
 {
 	CurrentStroke = nullptr;
 
 }
 
-void AHandController::BeginPlay()
+void APaintBrushHandController::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 
-void AHandController::Tick(float DeltaTime)
+void APaintBrushHandController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
