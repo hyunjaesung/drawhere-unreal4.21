@@ -10,20 +10,22 @@
 #include "UIPointerHandController.generated.h"
 
 /**
- * 
- */
+*
+*/
 UCLASS()
 class DRAWHERE_API AUIPointerHandController : public AHandControllerBase
 {
 	GENERATED_BODY()
 
-public: AUIPointerHandController();
+public:
+	AUIPointerHandController();
 
 	void TriggerPressed() override;
 	void TriggerReleased() override;
 
-private : 
+private:
 
 	UPROPERTY(VisibleAnywhere)
-		UWidgetInteractionComponent * Pointer;
+		UWidgetInteractionComponent* Pointer;
+
 };
