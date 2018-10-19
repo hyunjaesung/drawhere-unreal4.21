@@ -5,26 +5,29 @@
 #include "Kismet/GameplayStatics.h"
 #include "EngineUtils.h"
 #include "Stroke.h"
-
+#include "Misc/Guid.h"
 
 UPainterSaveGame * UPainterSaveGame::Create()
 {
-	USaveGame*NewSaveGame = UGameplayStatics::CreateSaveGameObject(StaticClass());
+	UPainterSaveGame* NewSaveGame = Cast<UPainterSaveGame>(UGameplayStatics::CreateSaveGameObject(StaticClass()));
 
-	return Cast<UPainterSaveGame>(NewSaveGame);
+
+	NewSaveGame->SlotName = FGuid::NewGuid().ToString(); // give random and fresh name
+
+	return NewSaveGame;
 
 
 }
 
 bool UPainterSaveGame::Save()
 {
-	return UGameplayStatics::SaveGameToSlot(this, TEXT("Test"), 0);
+	return UGameplayStatics::SaveGameToSlot(this, SlotName, 0);
 
 }
 
-UPainterSaveGame * UPainterSaveGame::Load()
+UPainterSaveGame * UPainterSaveGame::Load(FString SlotName)
 {
-	return Cast<UPainterSaveGame>(UGameplayStatics::LoadGameFromSlot(TEXT("Test"), 0));
+	return Cast<UPainterSaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
 
 }
 

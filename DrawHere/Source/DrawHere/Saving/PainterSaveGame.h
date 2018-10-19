@@ -33,7 +33,7 @@ class DRAWHERE_API UPainterSaveGame : public USaveGame
 public: // public needed
 	static UPainterSaveGame * Create();
 	bool Save();
-	static UPainterSaveGame * Load();
+	static UPainterSaveGame * Load(FString SlotName);
 
 
 	//just set and get string
@@ -44,12 +44,18 @@ public: // public needed
 
 	void DeserializeToWorld(UWorld* ChangedWorld);
 
+
+	FString GetSlotName() const { return SlotName; };
+
 private:
 	void ClearWorld(UWorld * World);
 
 	//state
 	UPROPERTY()
 		FString State;
+
+	UPROPERTY()
+		FString SlotName;
 
 	UPROPERTY()
 		TArray<FStrokeState> Strokes; // save strokes for making different level

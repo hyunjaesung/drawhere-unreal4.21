@@ -22,6 +22,15 @@ void AVRPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	UPainterSaveGame*Painting = UPainterSaveGame::Create(); 
+
+	if (Painting && Painting->Save())// save() doesn't make first save
+	{
+		
+		CurrentSlotName = Painting->GetSlotName();
+
+	}
+
 	if (PaintBrushHandControllerClass)
 	{
 		RightPaintBrushHandController = GetWorld()->SpawnActor<AHandControllerBase>(PaintBrushHandControllerClass);
@@ -45,21 +54,27 @@ void AVRPawn::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
 
 void AVRPawn::Save()
 {
-	UPainterSaveGame*Painting = UPainterSaveGame::Create();
+	UPainterSaveGame * Painting = UPainterSaveGame::Load(CurrentSlotName);
 
-	Painting->SetState("SaveWorld");
-	Painting->SerializeFromWorld(GetWorld());
-	Painting->Save();
+	if (Painting)
+	{
+		Painting->SetState("SaveWorld");
+		Painting->SerializeFromWorld(GetWorld());
+		Painting->Save();
+		UE_LOG(LogTemp, Warning, TEXT("ThisisSave"));
+	}
+
+	
 }
 
 void AVRPawn::Load()
 {
-	UPainterSaveGame * Painting = UPainterSaveGame::Load();
+	UPainterSaveGame * Painting = UPainterSaveGame::Load(CurrentSlotName);
 	if (Painting)
 	{
 		Painting->DeserializeToWorld(GetWorld());
 		UE_LOG(LogTemp, Warning, TEXT("Painting State %s"), *Painting->GetState());// * Warning
-
+		UE_LOG(LogTemp, Warning, TEXT("ThisisLoad"));
 	}
 	else
 	{
