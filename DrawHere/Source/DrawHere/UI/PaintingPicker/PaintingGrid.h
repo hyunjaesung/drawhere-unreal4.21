@@ -20,12 +20,13 @@ class DRAWHERE_API UPaintingGrid : public UUserWidget
 public:
 
 	void mock();
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable) // for using in blueprint
 	void AddPainting();
 
 protected:
 	UPROPERTY(BlueprintReadonly, VisibleAnywhere, meta = (BindWidget))
 		UUniformGridPanel * PaintingGrid; // in blueprint you have to change the name of grid panel for matching
-	
-	
+private :
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<UUserWidget> GridCardClass; // connect paintinggrid_wbp and paintinggridcard_wbp
 };
