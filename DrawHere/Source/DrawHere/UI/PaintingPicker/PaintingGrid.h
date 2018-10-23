@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-
+#include "PaintingGridCard.h"
 #include "Components/UniformGridPanel.h"
 
 #include "PaintingGrid.generated.h"
@@ -21,12 +21,12 @@ public:
 
 	void mock();
 	UFUNCTION(BlueprintCallable) // for using in blueprint
-	void AddPainting(int32 PaintingIndex); // where?
+	void AddPainting(int32 PaintingIndex, FString PaintingName); // where?
 
 protected:
 	UPROPERTY(BlueprintReadonly, VisibleAnywhere, meta = (BindWidget))
 		UUniformGridPanel * PaintingGrid; // in blueprint you have to change the name of grid panel for matching
 private :
 	UPROPERTY(EditDefaultsOnly)
-		TSubclassOf<UUserWidget> GridCardClass; // connect paintinggrid_wbp and paintinggridcard_wbp
+		TSubclassOf<UPaintingGridCard> GridCardClass; // connect paintinggrid_wbp and paintinggridcard_wbp
 };

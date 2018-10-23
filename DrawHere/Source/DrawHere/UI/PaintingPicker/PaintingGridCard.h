@@ -16,7 +16,10 @@ UCLASS()
 class DRAWHERE_API UPaintingGridCard : public UUserWidget
 {
 	GENERATED_BODY()
-	
+
+public :
+	int test;
+	void SetPaintingName(FString PaintingName);
 
 protected:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (BindWidget))
