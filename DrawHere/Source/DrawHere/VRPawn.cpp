@@ -61,7 +61,7 @@ void AVRPawn::Save()
 		Painting->SetState("SaveWorld");
 		Painting->SerializeFromWorld(GetWorld());
 		Painting->Save();
-		UE_LOG(LogTemp, Warning, TEXT("ThisisSave"));
+		//UE_LOG(LogTemp, Warning, TEXT("ThisisSave"));
 	}
 
 	
@@ -74,7 +74,7 @@ void AVRPawn::Load()
 	{
 		Painting->DeserializeToWorld(GetWorld());
 		UE_LOG(LogTemp, Warning, TEXT("Painting State %s"), *Painting->GetState());// * Warning
-		UE_LOG(LogTemp, Warning, TEXT("ThisisLoad"));
+		//UE_LOG(LogTemp, Warning, TEXT("ThisisLoad"));
 	}
 	else
 	{
