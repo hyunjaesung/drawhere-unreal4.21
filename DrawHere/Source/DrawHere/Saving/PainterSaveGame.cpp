@@ -32,12 +32,15 @@ UPainterSaveGame * UPainterSaveGame::Create()
 
 bool UPainterSaveGame::Save()
 {
+	/* it is just for debug
 	UE_LOG(LogTemp, Warning, TEXT("Painting Index :"));
 
 	for (FString SlotName : UPainterSaveGameIndex::Load()->GetSlotNames())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("PaintingName : %s"), *SlotName);
 	}
+	*/
+
 
 	return UGameplayStatics::SaveGameToSlot(this, SlotName, 0);
 

@@ -21,7 +21,7 @@ public:
 
 	void mock();
 	UFUNCTION(BlueprintCallable) // for using in blueprint
-	void AddPainting();
+	void AddPainting(int32 PaintingIndex); // where?
 
 protected:
 	UPROPERTY(BlueprintReadonly, VisibleAnywhere, meta = (BindWidget))

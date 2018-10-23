@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PaintingPicker.h"
+#include "Saving/PainterSaveGameIndex.h"
+
 #include "PaintingGrid.h"
 
 // Sets default values
@@ -29,13 +31,21 @@ void APaintingPicker::BeginPlay()
 	
 	// doing in c++ without using blueprint
 
-	UPaintingGrid * PaintingGridWidget = Cast<UPaintingGrid>(PaintingGrid3->GetUserWidgetObject()); // summon paintinggrid
+	UPaintingGrid * PaintingGridWidget = Cast<UPaintingGrid>(PaintingGrid3->GetUserWidgetObject());
 
 	if (!PaintingGridWidget) return;
 
-	PaintingGridWidget->AddPainting();
+	int32 Index = 0;
 
-	
+	for (FString SlotName : UPainterSaveGameIndex::Load()->GetSlotNames())
+	{
+		PaintingGridWidget->AddPainting(Index);
+		++Index;
+	}
+
+
+
+
 }
 
 
