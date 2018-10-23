@@ -6,7 +6,6 @@
 #include "Blueprint/UserWidget.h"
 #include "PaintingGridCard.h"
 #include "Components/UniformGridPanel.h"
-
 #include "PaintingGrid.generated.h"
 
 /**
