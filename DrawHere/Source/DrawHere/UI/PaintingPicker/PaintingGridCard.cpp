@@ -1,8 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PaintingGridCard.h"
-
-
 #include "Kismet/StereoLayerFunctionLibrary.h" 
 #include "Kismet/GameplayStatics.h"
 
@@ -19,6 +17,6 @@ void UPaintingGridCard::CardButtonClicked()
 {
 	UStereoLayerFunctionLibrary::ShowSplashScreen(); // for debug openlevel
 
-	UGameplayStatics::OpenLevel(GetWorld(), TEXT("Canvas"), true, "SlotName" + PaintingName);
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("Canvas"), true, "SlotName=" + PaintingName);
 
 }
