@@ -35,7 +35,7 @@ private :
 	void RightTriggerReleased() { if (RightPaintBrushHandController) RightPaintBrushHandController->TriggerReleased(); }
 
 	void Save();
-	void Load();
+	//void Load(); to PaintingGameMode
 
 	//Config
 	UPROPERTY(EditDefaultsOnly)

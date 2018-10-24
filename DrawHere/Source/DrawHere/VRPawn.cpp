@@ -2,6 +2,8 @@
 
 #include "VRPawn.h"
 #include "Engine/World.h"
+#include "Kismet/GameplayStatics.h"
+#include"PaintingGameMode_2.h"
 #include "Engine/Classes/Components/InputComponent.h"
 
 AVRPawn::AVRPawn()
@@ -49,36 +51,33 @@ void AVRPawn::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
 	PlayerInputComponent->BindAction(TEXT("RightTrigger"), EInputEvent::IE_Pressed, this, &AVRPawn::RightTriggerPressed);
 	PlayerInputComponent->BindAction(TEXT("RightTrigger"), EInputEvent::IE_Released, this, &AVRPawn::RightTriggerReleased);
 	PlayerInputComponent->BindAction(TEXT("Save"), EInputEvent::IE_Released, this, &AVRPawn::Save);
-	PlayerInputComponent->BindAction(TEXT("Load"), EInputEvent::IE_Released, this, &AVRPawn::Load);
+	//PlayerInputComponent->BindAction(TEXT("Load"), EInputEvent::IE_Released, this, &AVRPawn::Load); // we don't need b button for load more
 }
 
 void AVRPawn::Save()
 {
-	UPainterSaveGame * Painting = UPainterSaveGame::Load(CurrentSlotName);
+	auto GameMode = Cast<APaintingGameMode_2>(GetWorld()->GetAuthGameMode());
 
-	if (Painting)
-	{
-		Painting->SetState("SaveWorld");
-		Painting->SerializeFromWorld(GetWorld());
-		Painting->Save();
+	if (!GameMode) return;
+
+	GameMode->Save();
+
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MainMenu")); // return
+
+	//UPainterSaveGame * Painting = UPainterSaveGame::Load(CurrentSlotName); // if it hit for current slotname it would just save for new slot
+	//
+	//if (Painting)
+	//{
+		//Painting->SetState("SaveWorld");
+		//Painting->SerializeFromWorld(GetWorld());
+	//	Painting->Save();
 		//UE_LOG(LogTemp, Warning, TEXT("ThisisSave"));
-	}
+	//}
 
 	
 }
 
-void AVRPawn::Load()
-{
-	UPainterSaveGame * Painting = UPainterSaveGame::Load(CurrentSlotName);
-	if (Painting)
-	{
-		Painting->DeserializeToWorld(GetWorld());
-		UE_LOG(LogTemp, Warning, TEXT("Painting State %s"), *Painting->GetState());// * Warning
-		//UE_LOG(LogTemp, Warning, TEXT("ThisisLoad"));
-	}
-	else
-	{
-		UE_LOG(LogTemp, Warning, TEXT("NotFound"));
-	}
-
-}
+//void AVRPawn::Load()
+//{
+//	
+//}

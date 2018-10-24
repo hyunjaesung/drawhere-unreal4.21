@@ -18,6 +18,12 @@ public:
 	int test;
 	void InitGame(const FString & MapName, const FString & Option, FString & ErrorMessage) override;
 
+	void Save();
+	void Load();
+
+protected:
+	void BeginPlay() override;
+
 private:
 	//state
 	FString SlotName;
