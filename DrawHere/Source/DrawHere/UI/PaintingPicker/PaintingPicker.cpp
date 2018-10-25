@@ -2,8 +2,10 @@
 
 #include "PaintingPicker.h"
 #include "Saving/PainterSaveGameIndex.h"
-
+#include "ActionBar.h"
 #include "PaintingGrid.h"
+#include "Saving//PainterSaveGame.h"
+
 
 // Sets default values
 APaintingPicker::APaintingPicker()
@@ -31,9 +33,28 @@ void APaintingPicker::BeginPlay()
 	
 	// doing in c++ without using blueprint
 
+	UActionBar * ActionBarWidget = Cast<UActionBar>(ActionBar->GetUserWidgetObject()); // if you find action bar
+
+	if (ActionBarWidget) {
+		ActionBarWidget->SetParentPicker(this); // set parent piceker of action bar
+		
+	}
+
+		
+	RefreshSlots();
+	
+
+}
+
+void APaintingPicker::RefreshSlots()
+{
+
 	UPaintingGrid * PaintingGridWidget = Cast<UPaintingGrid>(PaintingGrid3->GetUserWidgetObject());
 
 	if (!PaintingGridWidget) return;
+
+	PaintingGridWidget->ClearPaintings();
+
 
 	int32 Index = 0;
 
@@ -42,11 +63,23 @@ void APaintingPicker::BeginPlay()
 		PaintingGridWidget->AddPainting(Index, SlotName);
 		++Index;
 	}
-
-
-
-
 }
 
 
+void APaintingPicker::AddPainting()
+{
+	//from VRPawn
+	UPainterSaveGame::Create();
 
+	RefreshSlots();
+	
+}
+
+void APaintingPicker::ToggleDeleteMode()
+{
+	UPaintingGrid * PaintingGridWidget = Cast<UPaintingGrid>(PaintingGrid3->GetUserWidgetObject());
+
+	if (!PaintingGridWidget) return;
+
+	PaintingGridWidget->ClearPaintings();
+}

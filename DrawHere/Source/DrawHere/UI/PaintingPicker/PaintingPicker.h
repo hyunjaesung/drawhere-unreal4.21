@@ -17,9 +17,15 @@ public:
 	// Sets default values for this actor's properties
 	APaintingPicker();
 
+	void AddPainting();
+
+	void ToggleDeleteMode();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	
 
 private :
 	UPROPERTY(VisibleAnyWhere)
@@ -30,4 +36,7 @@ private :
 	
 	UPROPERTY(VisibleAnywhere)
 		UWidgetComponent * ActionBar;
+
+	void RefreshSlots();
+
 };

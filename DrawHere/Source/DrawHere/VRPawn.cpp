@@ -24,14 +24,14 @@ void AVRPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	UPainterSaveGame*Painting = UPainterSaveGame::Create(); 
+	//UPainterSaveGame*Painting = UPainterSaveGame::Create(); 
 
-	if (Painting && Painting->Save())// save() doesn't make first save
-	{
+	//if (Painting && Painting->Save())// save() doesn't make first save
+	//{
 		
-		CurrentSlotName = Painting->GetSlotName();
+		//CurrentSlotName = Painting->GetSlotName();
 
-	}
+	//}
 
 	if (PaintBrushHandControllerClass)
 	{
