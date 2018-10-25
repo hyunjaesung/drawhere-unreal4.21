@@ -10,8 +10,13 @@ AHandControllerBase::AHandControllerBase()
 	PrimaryActorTick.bCanEverTick = true;
 	MotionContorller = CreateDefaultSubobject<UMotionControllerComponent>(TEXT("MotionController"));
 	SetRootComponent(MotionContorller);
-	MotionContorller->SetTrackingSource(EControllerHand::Right);
+	//
 	MotionContorller->SetShowDeviceModel(true);
 
 }
 
+void AHandControllerBase::SetHand(EControllerHand Hand)
+{
+	MotionContorller->SetTrackingSource(Hand);
+
+}
