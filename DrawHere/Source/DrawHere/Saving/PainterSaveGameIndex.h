@@ -21,16 +21,25 @@ public :
 
 	bool Save();
 
-	
-
 	void AddSaveGame(UPainterSaveGame * SaveGame);
+
+	void RemoveSaveGame(FString Slotname)
+	{
+		
+		SlotNames.Remove(Slotname);
+		//UE_LOG(LogTemp, Warning, TEXT("%s removed! "), *Slotname);
+
+	}
+	
 	TArray<FString> GetSlotNames() const { return SlotNames; };
 	
+	UPROPERTY()
+		TArray<FString> SlotNames;
+
 private : 
 	
 	static const FString SLOT_NAME; 
 
-	UPROPERTY()
-		TArray<FString> SlotNames;
+	
 		
 };

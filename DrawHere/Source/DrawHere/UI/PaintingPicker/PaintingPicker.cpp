@@ -4,6 +4,8 @@
 #include "Saving/PainterSaveGameIndex.h"
 #include "ActionBar.h"
 #include "PaintingGrid.h"
+#include "Kismet/StereoLayerFunctionLibrary.h" 
+#include "HAL/FileManager.h"
 #include "Saving//PainterSaveGame.h"
 
 
@@ -23,6 +25,7 @@ APaintingPicker::APaintingPicker()
 
 	PaintingGrid3 = CreateDefaultSubobject<UWidgetComponent>(TEXT("PaintingGrid"));
 	PaintingGrid3->SetupAttachment(GetRootComponent());
+		
 
 }
 
@@ -40,9 +43,10 @@ void APaintingPicker::BeginPlay()
 		
 	}
 
-		
-	RefreshSlots();
 	
+
+	RefreshSlots();
+		
 
 }
 
@@ -81,5 +85,31 @@ void APaintingPicker::ToggleDeleteMode()
 
 	if (!PaintingGridWidget) return;
 
-	PaintingGridWidget->ClearPaintings();
+	//PaintingGridWidget->ClearPaintings();
+
+	int32 Index = 0;
+	
+	FString LastSlotName;
+
+	for (FString SlotName : UPainterSaveGameIndex::Load()->GetSlotNames())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("slotname : %s"), *SlotName);
+	
+		LastSlotName = SlotName;
+		++Index;
+	}
+	
+	UPainterSaveGameIndex * PainterSaveGameIndex = UPainterSaveGameIndex::Load();
+
+
+	PainterSaveGameIndex->RemoveSaveGame(LastSlotName);
+
+	PainterSaveGameIndex->Save();
+
+	
+
+	RefreshSlots();
 }
+
+
+

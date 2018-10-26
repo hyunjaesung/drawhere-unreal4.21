@@ -12,8 +12,8 @@ UCLASS()
 class DRAWHERE_API APaintingPicker : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	APaintingPicker();
 
@@ -21,10 +21,18 @@ public:
 
 	void ToggleDeleteMode();
 
+	bool IsDeleteMode() const{ return DeleteMode; }
+
+	void RefreshSlots();
+
+	
+		
+	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	
 	
 
 private :
@@ -36,7 +44,11 @@ private :
 	
 	UPROPERTY(VisibleAnywhere)
 		UWidgetComponent * ActionBar;
+	
+	
+	
 
-	void RefreshSlots();
-
+	//state
+	bool DeleteMode = false;
+	
 };

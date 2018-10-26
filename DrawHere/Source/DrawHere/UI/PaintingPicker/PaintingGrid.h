@@ -6,6 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "PaintingGridCard.h"
 #include "Components/UniformGridPanel.h"
+#include "Components/WidgetComponent.h"
+
 #include "PaintingGrid.generated.h"
 
 /**
@@ -20,14 +22,24 @@ public:
 
 	void mock();
 	UFUNCTION(BlueprintCallable) // for using in blueprint
+
 	void AddPainting(int32 PaintingIndex, FString PaintingName); // where?
+	
+	void DeletePainting(int32 PaintingIndex, FString PaintingName);
 
 	void ClearPaintings();
 
+	
+	
 protected:
 	UPROPERTY(BlueprintReadonly, VisibleAnywhere, meta = (BindWidget))
 		UUniformGridPanel * PaintingGrid; // in blueprint you have to change the name of grid panel for matching
 private :
 	UPROPERTY(EditDefaultsOnly)
 		TSubclassOf<UPaintingGridCard> GridCardClass; // connect paintinggrid_wbp and paintinggridcard_wbp
+	
+	//UPROPERTY(VisibleAnywhere)
+		//UWidgetComponent * PaintingGridCard;
+	
+
 };

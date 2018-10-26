@@ -5,6 +5,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "EngineUtils.h"
 #include "Stroke.h"
+#include "HAL/FileManager.h"
+
 #include "PainterSaveGameIndex.h"
 
 #include "Misc/Guid.h"
@@ -25,23 +27,32 @@ UPainterSaveGame * UPainterSaveGame::Create()
 	Index->AddSaveGame(NewSaveGame);
 	Index->Save();
 	
+	
+
 	return NewSaveGame;
 
 
 }
 
+void UPainterSaveGame::Delete(FString SlotName)
+{
+	
+	UPainterSaveGameIndex * List = UPainterSaveGameIndex::Load();
+	
+
+	//List->RemoveSaveGame(SlotName);
+	//List->Save();
+
+	UGameplayStatics::DeleteGameInSlot(SlotName, 0);
+
+	
+
+}
+
+
 bool UPainterSaveGame::Save()
 {
-	/* it is just for debug
-	UE_LOG(LogTemp, Warning, TEXT("Painting Index :"));
-
-	for (FString SlotName : UPainterSaveGameIndex::Load()->GetSlotNames())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("PaintingName : %s"), *SlotName);
-	}
-	*/
-
-
+	
 	return UGameplayStatics::SaveGameToSlot(this, SlotName, 0);
 
 }
@@ -51,6 +62,9 @@ UPainterSaveGame * UPainterSaveGame::Load(FString SlotName)
 	return Cast<UPainterSaveGame>(UGameplayStatics::LoadGameFromSlot(SlotName, 0));
 
 }
+
+
+
 
 void UPainterSaveGame::SerializeFromWorld(UWorld * World)
 {

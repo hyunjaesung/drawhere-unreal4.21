@@ -11,21 +11,23 @@
 #include "PaintingGridCard.generated.h"
 
 /**
- * 
- */
+*
+*/
 UCLASS()
 class DRAWHERE_API UPaintingGridCard : public UUserWidget
 {
 	GENERATED_BODY()
 
-public :
-	int test;
-	void SetPaintingName(FString PaintingName);
+public:
+	
+	void SetPaintingName(FString NewPaintingName);
+
+	void SetDeletePaintingName(FString NewPaintingName);
 
 protected:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (BindWidget))
 		UTextBlock * SlotName;
-	
+
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (BindWidget))
 		UButton * CardButton;
 
@@ -33,6 +35,9 @@ protected:
 private:
 	UFUNCTION()
 		void CardButtonClicked();
+
+	UFUNCTION()
+		void DeleteCardButtonClicked();
 
 	//state
 

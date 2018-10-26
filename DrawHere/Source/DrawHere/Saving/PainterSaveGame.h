@@ -32,9 +32,13 @@ class DRAWHERE_API UPainterSaveGame : public USaveGame
 
 public: // public needed
 	static UPainterSaveGame * Create();
+
+	static void Delete(FString SlotName);
+
 	bool Save();
 	static UPainterSaveGame * Load(FString SlotName);
 
+	UPainterSaveGame * Getme() { return this; }
 
 	//just set and get string
 	void SetState(FString NewState) { State = NewState; };
@@ -47,17 +51,21 @@ public: // public needed
 
 	FString GetSlotName() const { return SlotName; };
 
+	UPROPERTY()
+		FString SlotName;
+
 private:
 	void ClearWorld(UWorld * World);
 
 	//state
+
+	
+
 	UPROPERTY()
 		FString State;
 
 	UPROPERTY()
-		FString SlotName;
-
-	UPROPERTY()
 		TArray<FStrokeState> Strokes; // save strokes for making different level
 
+	
 };
