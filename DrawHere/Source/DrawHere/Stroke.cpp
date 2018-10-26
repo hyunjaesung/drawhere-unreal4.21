@@ -32,6 +32,7 @@ AStroke * AStroke::SpawnAndDeserializeFromStruct(UWorld* World, const FStrokeSta
 	for (FVector ControlPoint : StrokeState.ControlPoints)
 	{
 		Stroke->Update(ControlPoint);
+		
 	}
 	return Stroke;
 }

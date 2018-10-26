@@ -4,12 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Components/WidgetInteractionComponent.h"
+
+
 #include "WidgetTouchingComponent.generated.h"
 
 /**
  * 
  */
-UCLASS(meta = (BlueprintSpawnableComponent))
+UCLASS() // meta = (BlueprintSpawnableComponent)
 class DRAWHERE_API UWidgetTouchingComponent : public UWidgetInteractionComponent
 {
 	GENERATED_BODY()
@@ -18,12 +20,12 @@ class DRAWHERE_API UWidgetTouchingComponent : public UWidgetInteractionComponent
 public :
 
 	
-	void TickComponent(float DeltaTime,
-		enum ELevelTick TickType,
-		FActorComponentTickFunction * ThisTickFunction) override;
+	//void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction) override;
+
+	
 	
 private:
 	//state
-	bool bIsClicked = false;
+	//bool bIsClicked = false;
 	
 };

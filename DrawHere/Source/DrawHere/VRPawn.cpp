@@ -48,34 +48,10 @@ void AVRPawn::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
 	
 	PlayerInputComponent->BindAction(TEXT("RightTrigger"), EInputEvent::IE_Pressed, this, &AVRPawn::RightTriggerPressed);
 	PlayerInputComponent->BindAction(TEXT("RightTrigger"), EInputEvent::IE_Released, this, &AVRPawn::RightTriggerReleased);
-	PlayerInputComponent->BindAction(TEXT("Save"), EInputEvent::IE_Released, this, &AVRPawn::Save);
-	//PlayerInputComponent->BindAction(TEXT("Load"), EInputEvent::IE_Released, this, &AVRPawn::Load); // we don't need b button for load more
-}
-
-void AVRPawn::Save()
-{
-	auto GameMode = Cast<APaintingGameMode_2>(GetWorld()->GetAuthGameMode());
-
-	if (!GameMode) return;
-
-	GameMode->Save();
-
-	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MainMenu")); // return
-
-	//UPainterSaveGame * Painting = UPainterSaveGame::Load(CurrentSlotName); // if it hit for current slotname it would just save for new slot
-	//
-	//if (Painting)
-	//{
-		//Painting->SetState("SaveWorld");
-		//Painting->SerializeFromWorld(GetWorld());
-	//	Painting->Save();
-		//UE_LOG(LogTemp, Warning, TEXT("ThisisSave"));
-	//}
-
 	
+	PlayerInputComponent->BindAction(TEXT("Xbutton"), EInputEvent::IE_Pressed, this, &AVRPawn::XbuttonPressed);
+	PlayerInputComponent->BindAction(TEXT("Xbutton"), EInputEvent::IE_Released, this, &AVRPawn::XbuttonReleased);
 }
 
-//void AVRPawn::Load()
-//{
-//	
-//}
+
+

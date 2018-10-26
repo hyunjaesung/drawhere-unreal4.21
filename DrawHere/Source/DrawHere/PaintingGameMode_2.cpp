@@ -2,7 +2,7 @@
 
 #include "PaintingGameMode_2.h"
 #include "Saving/PainterSaveGame.h"
-
+#include "Engine/World.h"
 #include "Kismet/StereoLayerFunctionLibrary.h"
 
 #include "Kismet/GameplayStatics.h"
@@ -53,5 +53,14 @@ void APaintingGameMode_2::Load()//from VRPawn
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Game Slot Not Found : %s"), *SlotName);
 	}
+
+}
+
+void APaintingGameMode_2::SaveAndQuit()
+{
+	Save();
+
+	UGameplayStatics::OpenLevel(GetWorld(), TEXT("MainMenu")); // return
+
 
 }

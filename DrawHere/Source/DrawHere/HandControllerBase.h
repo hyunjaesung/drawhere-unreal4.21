@@ -24,6 +24,9 @@ public:
 
 	virtual void TriggerPressed() {};
 	virtual void TriggerReleased() {};
+
+	virtual void XbuttonPressed() {};
+	virtual void XbuttonReleased() {};
 private :
 	//Component
 	UPROPERTY(VisibleAnywhere)

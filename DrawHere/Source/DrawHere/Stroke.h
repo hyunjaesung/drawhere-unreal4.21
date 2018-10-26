@@ -26,6 +26,12 @@ public:
 	static AStroke* SpawnAndDeserializeFromStruct(UWorld* World, const FStrokeState& StrokeState);
 
 
+	UFUNCTION(BlueprintCallable)
+		UInstancedStaticMeshComponent * GetStrokeMeshes(AStroke * Stroke)
+	{
+
+		return Stroke->StrokeMeshes;
+	}
 
 private:
 
@@ -49,6 +55,7 @@ private:
 	UPROPERTY(VisibleAnywhere)
 		UInstancedStaticMeshComponent * JointMeshes;
 
+	
 	//state
 	FVector PreviousCursorLocation;
 	TArray<FVector> ControlPoints;

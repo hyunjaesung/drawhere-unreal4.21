@@ -34,8 +34,8 @@ private :
 	void RightTriggerPressed() { if (RightHandController) RightHandController->TriggerPressed(); }
 	void RightTriggerReleased() { if (RightHandController) RightHandController->TriggerReleased(); }
 
-	void Save();
-	//void Load(); to PaintingGameMode
+	void XbuttonPressed() { if (RightHandController) RightHandController->XbuttonPressed(); }
+	void XbuttonReleased() { if (RightHandController) RightHandController->XbuttonReleased(); }
 
 	//Config
 	UPROPERTY(EditDefaultsOnly)

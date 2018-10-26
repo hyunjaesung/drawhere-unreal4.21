@@ -6,6 +6,7 @@
 #include "HandControllerBase.h"
 #include "WidgetComponent.h"
 
+
 #include "PaletteMenuHandController.generated.h"
 
 /**
@@ -18,7 +19,7 @@ class DRAWHERE_API APaletteMenuHandController : public AHandControllerBase
 	
 
 public :
-	int i;
+	
 	APaletteMenuHandController();
 
 
