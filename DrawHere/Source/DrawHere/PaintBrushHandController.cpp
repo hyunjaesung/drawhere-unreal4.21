@@ -10,17 +10,26 @@
 // Sets default values
 APaintBrushHandController::APaintBrushHandController()
 {
+	auto Root = GetRootComponent();
+
 	PrimaryActorTick.bCanEverTick = true;
 	Pointer = CreateDefaultSubobject<UWidgetInteractionComponent>(TEXT("Pointer"));
 	Pointer->SetupAttachment(GetRootComponent());
 	
+	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
+	StaticMesh->SetupAttachment(Root);
+
 }
 
 
 void APaintBrushHandController::TriggerPressed()
 {
+		
 		CurrentStroke = GetWorld()->SpawnActor<AStroke>(StrokeClass);
-		CurrentStroke->SetActorLocation(GetActorLocation());
+		FVector Location = GetActorLocation();
+		Location.X = Location.X + 8;
+		Location.Z = Location.Z + 3;
+		CurrentStroke->SetActorLocation(Location);
 		
 }
 
@@ -53,7 +62,10 @@ void APaintBrushHandController::Tick(float DeltaTime)
 
 	if (CurrentStroke)
 	{
-		CurrentStroke->Update(GetActorLocation());
+		FVector Location = GetActorLocation();
+		Location.X = Location.X + 8;
+		Location.Z = Location.Z + 3;
+		CurrentStroke->Update(Location);
 
 	}
 

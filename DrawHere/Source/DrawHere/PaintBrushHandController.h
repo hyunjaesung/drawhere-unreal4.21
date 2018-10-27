@@ -7,7 +7,7 @@
 #include "Components/WidgetInteractionComponent.h"
 #include"Stroke.h"
 #include"HandControllerBase.h"
-
+#include"Components/StaticMeshComponent.h"
 
 #include "PaintBrushHandController.generated.h"
 
@@ -26,6 +26,13 @@ public:
 	void XbuttonPressed() override;
 	void XbuttonReleased() override;
 
+	UFUNCTION(BlueprintCallable)
+		UStaticMeshComponent * GetStaticMeshes(APaintBrushHandController * PaintBrushHandController)
+	{
+
+		return PaintBrushHandController->StaticMesh;
+	}
+
 protected:
 	
 	virtual void BeginPlay() override;
@@ -43,6 +50,9 @@ public:
 		
 	}
 
+	
+
+
 private:
 	//config
 	UPROPERTY(EditAnywhere)
@@ -50,7 +60,13 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 		UWidgetInteractionComponent* Pointer;
+
+	UPROPERTY(VisibleAnywhere)
+		UStaticMeshComponent* StaticMesh;
 	
+	
+	
+
 	//State
 
 	AStroke * CurrentStroke;

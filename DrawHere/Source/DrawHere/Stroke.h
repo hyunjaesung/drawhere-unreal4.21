@@ -9,6 +9,7 @@
 #include "Components/InstancedStaticMeshComponent.h"
 #include "Saving/PainterSaveGame.h"
 #include "Components/SplineMeshComponent.h"
+
 #include "Stroke.generated.h"
 
 UCLASS()
@@ -22,7 +23,10 @@ public:
 
 	void Update(FVector CursorLocation);
 
+	
+	
 	FStrokeState SerializeToStruct() const;
+
 	static AStroke* SpawnAndDeserializeFromStruct(UWorld* World, const FStrokeState& StrokeState);
 
 
@@ -33,15 +37,18 @@ public:
 		return Stroke->StrokeMeshes;
 	}
 
+	
+
 private:
 
 	FTransform GetNextSegmentTransform(FVector CurrentLocation) const;
 
 	FTransform GetNextJointTransform(FVector CurrentLocation) const;
 
-
 	FVector GetNextSegmentScale(FVector CurrentLocation) const;
+
 	FQuat GetNextSegmentRotation(FVector CurrentLocation) const;
+
 	FVector GetNextSegmentLocation(FVector CurrentLocation) const;
 
 	//Components
@@ -58,6 +65,7 @@ private:
 	
 	//state
 	FVector PreviousCursorLocation;
+
 	TArray<FVector> ControlPoints;
 
 };

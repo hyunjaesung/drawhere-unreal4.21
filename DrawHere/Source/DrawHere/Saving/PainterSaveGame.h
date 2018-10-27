@@ -4,8 +4,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "GameFramework/SaveGame.h"
+
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
+
+
 
 #include "PainterSaveGame.generated.h"
 
@@ -14,8 +18,10 @@ USTRUCT()
 struct FStrokeState
 {
 	GENERATED_BODY()
-		UPROPERTY()
+
+	UPROPERTY()
 		TSubclassOf<class AStroke> Class;
+
 	UPROPERTY()
 		TArray<FVector> ControlPoints;
 };
@@ -31,23 +37,29 @@ class DRAWHERE_API UPainterSaveGame : public USaveGame
 
 
 public: // public needed
+
 	static UPainterSaveGame * Create();
-
-	static void Delete(FString SlotName);
-
+	
 	bool Save();
+
+	//void Delete(FString SlotName);
+	
+	static FString GetImagePath(const FString & SlotName);
+
 	static UPainterSaveGame * Load(FString SlotName);
 
-	UPainterSaveGame * Getme() { return this; }
+	UPainterSaveGame * Getme() { return this; } // need to delete
 
 	//just set and get string
 	void SetState(FString NewState) { State = NewState; };
+
 	FString GetState() const { return State; }
 
 	void SerializeFromWorld(UWorld*World);
 
 	void DeserializeToWorld(UWorld* ChangedWorld);
 
+	void SnapshotLevel(UWorld* World);
 
 	FString GetSlotName() const { return SlotName; };
 
@@ -55,12 +67,11 @@ public: // public needed
 		FString SlotName;
 
 private:
+
 	void ClearWorld(UWorld * World);
 
 	//state
-
 	
-
 	UPROPERTY()
 		FString State;
 

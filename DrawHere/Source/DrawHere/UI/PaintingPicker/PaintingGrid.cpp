@@ -26,17 +26,17 @@ void UPaintingGrid::AddPainting(int32 PaintingIndex, FString PaintingName) // Pa
 
 }
 
-void UPaintingGrid::DeletePainting(int32 PaintingIndex, FString PaintingName)
-{
-	if (!PaintingGrid) return;
+//void UPaintingGrid::DeletePainting(int32 PaintingIndex, FString PaintingName)
+//{
+	//if (!PaintingGrid) return;
 
-	UPaintingGridCard * NewWidget = CreateWidget<UPaintingGridCard>(GetWorld(), GridCardClass); // card which will add
+	//UPaintingGridCard * NewWidget = CreateWidget<UPaintingGridCard>(GetWorld(), GridCardClass); // card which will add
 
-	if (!NewWidget) return;
+	//if (!NewWidget) return;
 
-	NewWidget->SetDeletePaintingName(PaintingName);
+	//NewWidget->SetDeletePaintingName(PaintingName);
 
-}
+//}
 
 void UPaintingGrid::ClearPaintings()
 {

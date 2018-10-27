@@ -7,6 +7,9 @@
 
 #include "Components/TextBlock.h"
 #include "Components/Button.h"
+#include "Components/Image.h"
+
+
 
 #include "PaintingGridCard.generated.h"
 
@@ -22,7 +25,7 @@ public:
 	
 	void SetPaintingName(FString NewPaintingName);
 
-	void SetDeletePaintingName(FString NewPaintingName);
+	
 
 protected:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (BindWidget))
@@ -31,15 +34,20 @@ protected:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (BindWidget))
 		UButton * CardButton;
 
+	//UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (BindWidget))
+		//UImage* Thumbnail;
 
 private:
 	UFUNCTION()
 		void CardButtonClicked();
 
-	UFUNCTION()
-		void DeleteCardButtonClicked();
+	
 
 	//state
 
 	FString PaintingName;
+			
+
+	
+
 };

@@ -6,12 +6,17 @@
 #include "Kismet/StereoLayerFunctionLibrary.h" 
 #include "Kismet/GameplayStatics.h"
 
+#include "Brushes/SlateDynamicImageBrush.h"
+#include "HAL/FileManager.h"
+#include "Saving/PainterSaveGame.h"
+
+
 void UPaintingGridCard::SetPaintingName(FString NewPaintingName)
 {
 	PaintingName = NewPaintingName;
 
 	SlotName->SetText(FText::FromString(PaintingName)); // text for user
-
+	
 	CardButton->OnClicked.AddDynamic(this, &UPaintingGridCard::CardButtonClicked); // binding method
 }
 
@@ -25,18 +30,3 @@ void UPaintingGridCard::CardButtonClicked()
 
 }
 
-
-void UPaintingGridCard::SetDeletePaintingName(FString NewPaintingName)
-{
-	PaintingName = NewPaintingName;
-
-	SlotName->SetText(FText::FromString(PaintingName)); // text for user
-
-	CardButton->OnClicked.AddDynamic(this, &UPaintingGridCard::DeleteCardButtonClicked); // binding method
-}
-
-void UPaintingGridCard::DeleteCardButtonClicked()
-{
-	UPainterSaveGame::Delete(PaintingName);
-
-}

@@ -93,3 +93,4 @@ FTransform AStroke::GetNextJointTransform(FVector CurrentLocation) const
 
 	return JointTransform;
 }
+

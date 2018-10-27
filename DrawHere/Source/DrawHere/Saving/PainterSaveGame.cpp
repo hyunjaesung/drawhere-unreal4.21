@@ -5,11 +5,16 @@
 #include "Kismet/GameplayStatics.h"
 #include "EngineUtils.h"
 #include "Stroke.h"
+
 #include "HAL/FileManager.h"
+#include "Paths.h"
+#include "UI/SnapShotCamera.h"
 
 #include "PainterSaveGameIndex.h"
 
 #include "Misc/Guid.h"
+
+
 
 UPainterSaveGame * UPainterSaveGame::Create()
 {
@@ -34,20 +39,20 @@ UPainterSaveGame * UPainterSaveGame::Create()
 
 }
 
-void UPainterSaveGame::Delete(FString SlotName)
-{
+//void UPainterSaveGame::Delete(FString SlotName)
+//{
 	
-	UPainterSaveGameIndex * List = UPainterSaveGameIndex::Load();
+	//UPainterSaveGameIndex * List = UPainterSaveGameIndex::Load();
 	
 
 	//List->RemoveSaveGame(SlotName);
 	//List->Save();
 
-	UGameplayStatics::DeleteGameInSlot(SlotName, 0);
+//UGameplayStatics::DeleteGameInSlot(SlotName, 0);
 
 	
 
-}
+//}
 
 
 bool UPainterSaveGame::Save()
@@ -100,4 +105,30 @@ void UPainterSaveGame::ClearWorld(UWorld * World)
 	{
 		StrokeItr->Destroy();
 	}
+}
+
+void UPainterSaveGame::SnapshotLevel(UWorld* World)
+{
+	for (TActorIterator<AStroke> StrokeItr(World); StrokeItr; ++StrokeItr)//iterate over all strokes
+	{
+		//Todo:serialize
+		Strokes.Add(StrokeItr->SerializeToStruct());//Store class type
+	}
+
+	for (TActorIterator<ASnapShotCamera> SnapshotCamera(World); SnapshotCamera; ++SnapshotCamera)
+	{
+		FString ThumbnailDir = FPaths::Combine(FPaths::ProjectSavedDir(), TEXT("Thumbs"));
+		IFileManager::Get().MakeDirectory(*ThumbnailDir, true);
+		FString FileName = SlotName + ".png";
+
+		SnapshotCamera->CaptureScreenshot(ThumbnailDir, FileName);
+		break; // Only snapshot the first camera in a scene.
+	}
+}
+
+FString UPainterSaveGame::GetImagePath(const FString & SlotName)
+{
+	FString ThumbnailDir = FPaths::Combine(FPaths::ProjectSavedDir(), TEXT("Thumbs"));
+	FString FileName = SlotName + ".png";
+	return FPaths::Combine(ThumbnailDir, FileName);
 }

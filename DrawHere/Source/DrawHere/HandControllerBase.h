@@ -32,4 +32,7 @@ private :
 	UPROPERTY(VisibleAnywhere)
 		UMotionControllerComponent*MotionContorller;
 
+	
+
+
 };
