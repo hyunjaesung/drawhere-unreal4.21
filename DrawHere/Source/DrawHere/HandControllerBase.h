@@ -27,6 +27,10 @@ public:
 
 	virtual void XbuttonPressed() {};
 	virtual void XbuttonReleased() {};
+
+	virtual void BottomTriggerPressed() {};
+	virtual void BottomTriggerReleased() {};
+
 private :
 	//Component
 	UPROPERTY(VisibleAnywhere)

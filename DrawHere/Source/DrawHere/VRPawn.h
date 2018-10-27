@@ -37,6 +37,9 @@ private :
 	void XbuttonPressed() { if (RightHandController) RightHandController->XbuttonPressed(); }
 	void XbuttonReleased() { if (RightHandController) RightHandController->XbuttonReleased(); }
 
+	void RightBottomTriggerPressed() { if (RightHandController) RightHandController->BottomTriggerPressed(); }
+	void RightBottomTriggerReleased() { if (RightHandController) RightHandController->BottomTriggerReleased(); }
+
 	//Config
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<AHandControllerBase> RightHandControllerClass;

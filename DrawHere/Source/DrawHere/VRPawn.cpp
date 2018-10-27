@@ -51,6 +51,9 @@ void AVRPawn::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
 	
 	PlayerInputComponent->BindAction(TEXT("Xbutton"), EInputEvent::IE_Pressed, this, &AVRPawn::XbuttonPressed);
 	PlayerInputComponent->BindAction(TEXT("Xbutton"), EInputEvent::IE_Released, this, &AVRPawn::XbuttonReleased);
+
+	PlayerInputComponent->BindAction(TEXT("RightBottomTrigger"), EInputEvent::IE_Pressed, this, &AVRPawn::RightBottomTriggerPressed);
+	PlayerInputComponent->BindAction(TEXT("RightBottomTrigger"), EInputEvent::IE_Released, this, &AVRPawn::RightBottomTriggerReleased);
 }
 
 

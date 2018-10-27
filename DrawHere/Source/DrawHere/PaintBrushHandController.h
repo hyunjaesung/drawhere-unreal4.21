@@ -5,13 +5,15 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Components/WidgetInteractionComponent.h"
-#include"Stroke.h"
-#include"HandControllerBase.h"
-#include"Components/StaticMeshComponent.h"
+#include "Stroke.h"
+#include "HandControllerBase.h"
+#include "Components/StaticMeshComponent.h"
+#include "Erase.h"
+
 
 #include "PaintBrushHandController.generated.h"
 
-UCLASS()
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class DRAWHERE_API APaintBrushHandController : public AHandControllerBase
 {
 	GENERATED_BODY()
@@ -25,6 +27,9 @@ public:
 	
 	void XbuttonPressed() override;
 	void XbuttonReleased() override;
+
+	void BottomTriggerPressed() override;
+	void BottomTriggerReleased() override;
 
 	UFUNCTION(BlueprintCallable)
 		UStaticMeshComponent * GetStaticMeshes(APaintBrushHandController * PaintBrushHandController)
@@ -63,8 +68,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 		UStaticMeshComponent* StaticMesh;
-	
-	
+
 	
 
 	//State

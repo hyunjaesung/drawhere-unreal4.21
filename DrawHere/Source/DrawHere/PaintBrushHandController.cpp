@@ -3,6 +3,10 @@
 #include "PaintBrushHandController.h"
 
 
+
+
+
+
 #include "Engine/World.h"
 
 
@@ -19,10 +23,11 @@ APaintBrushHandController::APaintBrushHandController()
 	StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMesh"));
 	StaticMesh->SetupAttachment(Root);
 
+	
 }
 
 
-void APaintBrushHandController::TriggerPressed()
+void APaintBrushHandController::TriggerPressed() // Draw
 {
 		
 		CurrentStroke = GetWorld()->SpawnActor<AStroke>(StrokeClass);
@@ -39,7 +44,7 @@ void APaintBrushHandController::TriggerReleased()
 
 }
 
-void APaintBrushHandController::XbuttonPressed()
+void APaintBrushHandController::XbuttonPressed() // select palette menu
 {
 	Pointer->PressPointerKey(EKeys::LeftMouseButton);
 }
@@ -48,6 +53,31 @@ void APaintBrushHandController::XbuttonReleased()
 {
 	Pointer->ReleasePointerKey(EKeys::LeftMouseButton);
 }
+
+void APaintBrushHandController::BottomTriggerPressed()  // Delete
+{
+	UE_LOG(LogTemp, Warning, TEXT("BottomTriggerPressed!!"));
+
+	TSet<AActor *> OverlappingActors;
+	
+	StaticMesh->GetOverlappingActors(OverlappingActors);
+	
+	
+
+	for (auto Actor : OverlappingActors)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Destroy!!"));
+		Actor->Destroy();
+	}
+	
+
+}
+
+void APaintBrushHandController::BottomTriggerReleased()
+{
+
+}
+
 
 void APaintBrushHandController::BeginPlay()
 {
