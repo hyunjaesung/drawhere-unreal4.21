@@ -43,7 +43,13 @@ void APaintingPicker::BeginPlay()
 		
 	}
 
-	
+	UPaintingGrid * PaintingGridWidget = Cast<UPaintingGrid>(PaintingGrid3->GetUserWidgetObject()); // if you find action bar
+
+	if (PaintingGridWidget) {
+		PaintingGridWidget->SetParentPicker(this); // set parent piceker of action bar
+
+	}
+
 
 	RefreshSlots();
 		
@@ -52,6 +58,7 @@ void APaintingPicker::BeginPlay()
 
 void APaintingPicker::RefreshSlots()
 {
+	//UE_LOG(LogTemp, Warning, TEXT("RefreshSlots!"));
 
 	UPaintingGrid * PaintingGridWidget = Cast<UPaintingGrid>(PaintingGrid3->GetUserWidgetObject());
 
@@ -81,30 +88,39 @@ void APaintingPicker::AddPainting()
 
 void APaintingPicker::ToggleDeleteMode()
 {
+	DeleteMode = !DeleteMode;
+	
 	UPaintingGrid * PaintingGridWidget = Cast<UPaintingGrid>(PaintingGrid3->GetUserWidgetObject());
 
-	if (!PaintingGridWidget) return;
+	PaintingGridWidget->DeleteMode = DeleteMode;
+
+	//UPaintingGrid * PaintingGridWidget = Cast<UPaintingGrid>(PaintingGrid3->GetUserWidgetObject());
+
+	//if (!PaintingGridWidget) return;
+
+	//PaintingGridWidget->DeleteMode = DeleteMode;
+
 
 	//PaintingGridWidget->ClearPaintings();
 
-	int32 Index = 0;
+	//int32 Index = 0;
 	
-	FString LastSlotName;
+	//FString LastSlotName;
 
-	for (FString SlotName : UPainterSaveGameIndex::Load()->GetSlotNames())
-	{
-		UE_LOG(LogTemp, Warning, TEXT("slotname : %s"), *SlotName);
+	//for (FString SlotName : UPainterSaveGameIndex::Load()->GetSlotNames())
+	//{
+		//UE_LOG(LogTemp, Warning, TEXT("slotname : %s"), *SlotName);
 	
-		LastSlotName = SlotName;
-		++Index;
-	}
+		//LastSlotName = SlotName;
+		//++Index;
+	//}
 	
-	UPainterSaveGameIndex * PainterSaveGameIndex = UPainterSaveGameIndex::Load();
+	//UPainterSaveGameIndex * PainterSaveGameIndex = UPainterSaveGameIndex::Load();
 
 
-	PainterSaveGameIndex->RemoveSaveGame(LastSlotName);
+	//PainterSaveGameIndex->RemoveSaveGame(LastSlotName);
 
-	PainterSaveGameIndex->Save();
+	//PainterSaveGameIndex->Save();
 
 	
 

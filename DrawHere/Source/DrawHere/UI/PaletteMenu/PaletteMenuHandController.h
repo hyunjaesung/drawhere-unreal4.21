@@ -22,6 +22,7 @@ public :
 	
 	APaletteMenuHandController();
 
+	
 
 private :
 	UPROPERTY(VisibleAnywhere)

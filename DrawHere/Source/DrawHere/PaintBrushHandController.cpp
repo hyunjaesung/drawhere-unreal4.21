@@ -1,12 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "PaintBrushHandController.h"
-
-
-
-
-
-
+#include "UI/PaletteMenu/PaletteMenuHandController.h"
 #include "Engine/World.h"
 
 
@@ -56,7 +51,8 @@ void APaintBrushHandController::XbuttonReleased()
 
 void APaintBrushHandController::BottomTriggerPressed()  // Delete
 {
-	UE_LOG(LogTemp, Warning, TEXT("BottomTriggerPressed!!"));
+	//UE_LOG(LogTemp, Warning, TEXT("BottomTriggerPressed!!"));
+	//APaletteMenuHandController * PaletteMenuHandController;
 
 	TSet<AActor *> OverlappingActors;
 	
@@ -66,7 +62,14 @@ void APaintBrushHandController::BottomTriggerPressed()  // Delete
 
 	for (auto Actor : OverlappingActors)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Destroy!!"));
+		if (Actor->GetName() == "PaletteMenuHandController_BP_C_0") // don't make palette delete
+		{
+			break;
+		}
+
+		
+
+		UE_LOG(LogTemp, Warning, TEXT("Name is %s"), *Actor->GetName());
 		Actor->Destroy();
 	}
 	

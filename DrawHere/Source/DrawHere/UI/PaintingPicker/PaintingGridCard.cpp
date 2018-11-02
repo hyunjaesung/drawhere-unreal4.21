@@ -10,15 +10,18 @@
 #include "HAL/FileManager.h"
 #include "Saving/PainterSaveGame.h"
 
+#include "PaintingGrid.h"
 
 void UPaintingGridCard::SetPaintingName(FString NewPaintingName)
 {
 	PaintingName = NewPaintingName;
 
 	SlotName->SetText(FText::FromString(PaintingName)); // text for user
-	
+
 	CardButton->OnClicked.AddDynamic(this, &UPaintingGridCard::CardButtonClicked); // binding method
 }
+
+
 
 void UPaintingGridCard::CardButtonClicked()
 {
@@ -26,7 +29,6 @@ void UPaintingGridCard::CardButtonClicked()
 
 	UGameplayStatics::OpenLevel(GetWorld(), TEXT("Canvas"), true, "SlotName=" + PaintingName);
 
-	
+
 
 }
-

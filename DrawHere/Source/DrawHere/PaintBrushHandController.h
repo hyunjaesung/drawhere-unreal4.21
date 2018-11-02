@@ -8,12 +8,10 @@
 #include "Stroke.h"
 #include "HandControllerBase.h"
 #include "Components/StaticMeshComponent.h"
-#include "Erase.h"
-
 
 #include "PaintBrushHandController.generated.h"
 
-UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
+UCLASS()
 class DRAWHERE_API APaintBrushHandController : public AHandControllerBase
 {
 	GENERATED_BODY()
@@ -62,12 +60,15 @@ private:
 	//config
 	UPROPERTY(EditAnywhere)
 		TSubclassOf<AStroke> StrokeClass;
+	int32 TestVar3;
 
 	UPROPERTY(VisibleAnywhere)
 		UWidgetInteractionComponent* Pointer;
+	int32 TestVar2;
 
 	UPROPERTY(VisibleAnywhere)
 		UStaticMeshComponent* StaticMesh;
+	int32 TestVar;
 
 	
 

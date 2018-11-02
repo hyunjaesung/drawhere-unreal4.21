@@ -27,7 +27,7 @@ public :
 	{
 		
 		SlotNames.Remove(Slotname);
-		//UE_LOG(LogTemp, Warning, TEXT("%s removed! "), *Slotname);
+		UE_LOG(LogTemp, Warning, TEXT("%s removed! "), *Slotname);
 
 	}
 	

@@ -25,7 +25,7 @@ public:
 
 	void RefreshSlots();
 
-	
+	//void DeleteSlot(FString SlotName);
 		
 	
 

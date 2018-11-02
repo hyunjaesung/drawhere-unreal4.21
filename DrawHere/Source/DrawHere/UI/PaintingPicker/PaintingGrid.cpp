@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "PaintingGrid.h"
 
 
@@ -11,14 +9,16 @@ void UPaintingGrid::AddPainting(int32 PaintingIndex, FString PaintingName) // Pa
 {
 
 	if (!PaintingGrid) return;
-	
+
 	UPaintingGridCard * NewWidget = CreateWidget<UPaintingGridCard>(GetWorld(), GridCardClass); // card which will add
-	
+
 	if (!NewWidget) return;
 
 	NewWidget->SetPaintingName(PaintingName);
-	
-	USizeBox*CardContainer = Cast<USizeBox>( PaintingGrid->GetChildAt(PaintingIndex)); // make sizebox as much as numbers of indexes
+
+	//NewWidget->SetParentGrid(this);
+
+	USizeBox*CardContainer = Cast<USizeBox>(PaintingGrid->GetChildAt(PaintingIndex)); // make sizebox as much as numbers of indexes
 
 	if (!CardContainer) return;
 
@@ -28,13 +28,13 @@ void UPaintingGrid::AddPainting(int32 PaintingIndex, FString PaintingName) // Pa
 
 //void UPaintingGrid::DeletePainting(int32 PaintingIndex, FString PaintingName)
 //{
-	//if (!PaintingGrid) return;
+//if (!PaintingGrid) return;
 
-	//UPaintingGridCard * NewWidget = CreateWidget<UPaintingGridCard>(GetWorld(), GridCardClass); // card which will add
+//UPaintingGridCard * NewWidget = CreateWidget<UPaintingGridCard>(GetWorld(), GridCardClass); // card which will add
 
-	//if (!NewWidget) return;
+//if (!NewWidget) return;
 
-	//NewWidget->SetDeletePaintingName(PaintingName);
+//NewWidget->SetDeletePaintingName(PaintingName);
 
 //}
 
@@ -47,8 +47,8 @@ void UPaintingGrid::ClearPaintings()
 		if (!CardContainer) continue;
 
 		CardContainer->ClearChildren();
-		
+
 	}
 
-	
+
 }
