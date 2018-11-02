@@ -16,7 +16,7 @@ void UPaintingGrid::AddPainting(int32 PaintingIndex, FString PaintingName) // Pa
 
 	NewWidget->SetPaintingName(PaintingName);
 
-	//NewWidget->SetParentGrid(this);
+	NewWidget->SetParentPicker(ParentPicker);
 
 	USizeBox*CardContainer = Cast<USizeBox>(PaintingGrid->GetChildAt(PaintingIndex)); // make sizebox as much as numbers of indexes
 

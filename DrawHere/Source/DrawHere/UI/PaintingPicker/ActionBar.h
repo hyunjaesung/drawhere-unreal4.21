@@ -25,6 +25,9 @@ public :
 
 	void SetParentPicker(APaintingPicker * NewParentPicker) { ParentPicker = NewParentPicker; }
 
+	UFUNCTION(BlueprintCallable)
+		bool IsDeleteMode() const { return ParentPicker->DeleteMode; }
+
 protected:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (BindWidget))
 		UButton*AddButton;

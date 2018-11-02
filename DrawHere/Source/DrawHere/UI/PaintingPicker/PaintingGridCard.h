@@ -10,7 +10,7 @@
 #include "Components/Button.h"
 #include "Components/Image.h"
 
-
+#include "PaintingPicker.h"
 
 #include "PaintingGridCard.generated.h"
 
@@ -26,7 +26,7 @@ public:
 
 	void SetPaintingName(FString NewPaintingName);
 
-	
+	void SetParentPicker(APaintingPicker * NewParentPicker) { ParentPicker = NewParentPicker; }
 
 protected:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (BindWidget))
@@ -48,6 +48,6 @@ private:
 
 	FString PaintingName;
 
-
+	APaintingPicker * ParentPicker;
 
 };

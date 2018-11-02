@@ -21,13 +21,16 @@ public:
 
 	void ToggleDeleteMode();
 
+	UFUNCTION(BlueprintCallable)
 	bool IsDeleteMode() const{ return DeleteMode; }
 
-	void RefreshSlots();
+	UFUNCTION(BlueprintCallable)
+		void RefreshSlots();
 
 	//void DeleteSlot(FString SlotName);
-		
 	
+	UPROPERTY(BlueprintReadOnly)
+	bool DeleteMode = false;
 
 protected:
 	// Called when the game starts or when spawned
@@ -49,6 +52,6 @@ private :
 	
 
 	//state
-	bool DeleteMode = false;
+
 	
 };

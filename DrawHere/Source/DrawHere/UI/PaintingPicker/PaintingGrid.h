@@ -34,6 +34,9 @@ public:
 
 	bool DeleteMode = false;
 
+	UFUNCTION(BlueprintCallable)
+	bool IsDeleteMode() const { return DeleteMode; }
+
 protected:
 	UPROPERTY(BlueprintReadonly, VisibleAnywhere, meta = (BindWidget))
 		UUniformGridPanel * PaintingGrid; // in blueprint you have to change the name of grid panel for matching
