@@ -3,6 +3,7 @@
 #include "PaintBrushHandController.h"
 #include "UI/PaletteMenu/PaletteMenuHandController.h"
 #include "Engine/World.h"
+#include "Engine/StaticMeshActor.h"
 
 
 
@@ -26,9 +27,8 @@ void APaintBrushHandController::TriggerPressed() // Draw
 {
 		
 		CurrentStroke = GetWorld()->SpawnActor<AStroke>(StrokeClass);
-		FVector Location = GetActorLocation();
-		Location.X = Location.X + 8;
-		Location.Z = Location.Z + 3;
+		FVector Location = StaticMesh->GetComponentLocation();
+		Location.X = Location.X + 5;
 		CurrentStroke->SetActorLocation(Location);
 		
 }
@@ -95,9 +95,9 @@ void APaintBrushHandController::Tick(float DeltaTime)
 
 	if (CurrentStroke)
 	{
-		FVector Location = GetActorLocation();
-		Location.X = Location.X + 8;
-		Location.Z = Location.Z + 3;
+		
+		FVector Location = StaticMesh->GetComponentLocation();
+		Location.X = Location.X + 5;
 		CurrentStroke->Update(Location);
 
 	}

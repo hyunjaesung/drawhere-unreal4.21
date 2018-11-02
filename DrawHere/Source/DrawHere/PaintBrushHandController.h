@@ -29,6 +29,8 @@ public:
 	void BottomTriggerPressed() override;
 	void BottomTriggerReleased() override;
 
+	
+
 	UFUNCTION(BlueprintCallable)
 		UStaticMeshComponent * GetStaticMeshes(APaintBrushHandController * PaintBrushHandController)
 	{
